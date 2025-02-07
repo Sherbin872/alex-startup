@@ -6,7 +6,7 @@ export const ThemeContext = createContext();
 // Theme Provider Component
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("darkMode") === "true" // Persist state in local storage
+    localStorage.getItem("darkMode") !== "false" // Persist state in local storage
   );
 
   const lightTheme = {
