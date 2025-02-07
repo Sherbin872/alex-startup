@@ -203,7 +203,7 @@ const Container = styled.div`
   color: ${({ theme }) => theme.text};
 
   @media (max-width: 768px) {
-    padding: 50px 20px 45px 20px;
+    padding: 80px 20px 45px 20px;
   }
 `;
 
