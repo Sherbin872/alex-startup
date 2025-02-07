@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useParams, useLocation } from "react-router-dom";
@@ -14,12 +14,17 @@ import {
   FaListAlt,
   FaRupeeSign,
 } from "react-icons/fa";
+import { Footer } from "./Footer";
 
 const CourseDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const { theme } = useContext(ThemeContext); // Access the current theme
   const course = location.state?.course;
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the page loads
+  }, []);
 
   if (!course)
     return <ErrorMessage theme={theme}>Course Not Found</ErrorMessage>;
@@ -137,6 +142,7 @@ const CourseDetails = () => {
           Join Now
         </motion.button>
       </CTA>
+      <Footer />
     </Container>
   );
 };

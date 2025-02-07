@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import courses from "../assets/coursesData";
+import { Footer } from "./Footer";
 
 const Courses = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the page loads
+  }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext); // Access the current theme
@@ -65,6 +70,7 @@ const Courses = () => {
           <NoResults theme={theme}>No courses found.</NoResults>
         )}
       </CourseGrid>
+      <Footer />
     </PageContainer>
   );
 };

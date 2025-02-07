@@ -65,6 +65,10 @@ const Foooter = styled.footer`
   color: ${({ theme }) => theme.footerText};
   padding: 40px 20px;
   margin-top: 50px;
+  @media (max-width: 768px) {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 `;
 
 const FooterContent = styled.div`

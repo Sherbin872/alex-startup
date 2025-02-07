@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../context/ThemeContext";
+import { Footer } from "./Footer";
 import { FaPhoneAlt, FaEnvelope, FaProjectDiagram } from "react-icons/fa";
 
 const ProjectsPage = () => {
   const { theme } = useContext(ThemeContext); // Access the current theme
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the page loads
+  }, []);
 
   const handleMailClick = () => {
     window.location.href =
@@ -67,6 +72,7 @@ const ProjectsPage = () => {
           </ContactCard>
         </ContactMethods>
       </ContactSection>
+      <Footer />
     </Container>
   );
 };

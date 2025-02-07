@@ -24,6 +24,10 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <NavContainer theme={theme}>
       {/* Logo */}
@@ -43,6 +47,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.95 }}
           className={location.pathname === "/" ? "active" : ""}
           theme={theme}
+          onClick={closeMobileMenu}
         >
           <Link to="/">
             <FaHome size={20} aria-label="Home" /> Home
@@ -53,6 +58,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.95 }}
           className={location.pathname === "/courses" ? "active" : ""}
           theme={theme}
+          onClick={closeMobileMenu}
         >
           <Link to="/courses">
             <FaBook size={20} aria-label="Courses" /> Courses
@@ -65,15 +71,28 @@ const Navbar = () => {
             location.pathname === "/project-consultancy" ? "active" : ""
           }
           theme={theme}
+          onClick={closeMobileMenu}
         >
           <Link to="/project-consultancy">
             <FaUser size={20} aria-label="Profile" /> Consultancy
           </Link>
         </NavItem>
+
+        {/* Dark Mode Toggle inside Mobile Menu */}
+        <MobileDarkModeToggle
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleDarkMode}
+          aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          theme={theme}
+        >
+          {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
+          <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
+        </MobileDarkModeToggle>
       </NavLinks>
 
-      {/* Dark Mode Toggle */}
-      <DarkModeToggle
+      {/* Dark Mode Toggle for Desktop */}
+      <DesktopDarkModeToggle
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={toggleDarkMode}
@@ -81,7 +100,7 @@ const Navbar = () => {
         theme={theme}
       >
         {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
-      </DarkModeToggle>
+      </DesktopDarkModeToggle>
     </NavContainer>
   );
 };
@@ -98,7 +117,8 @@ const NavContainer = styled.nav`
   width: 95%;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.navBackground};
+  background: rgba(255, 255, 255, 0.1);
+  // background: ${({ theme }) => theme.navBackground};
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   color: ${({ theme }) => theme.text};
@@ -106,7 +126,7 @@ const NavContainer = styled.nav`
   transition: background 0.3s ease-in-out;
 
   @media (max-width: 768px) {
-    padding: 15px 20px;
+    padding: 15px 20px 15px 20px;
   }
 `;
 
@@ -124,13 +144,14 @@ const NavLinks = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    // align-items: center;
     position: absolute;
     top: 60px;
-    left: ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "0" : "-100%")};
-    width: 100%;
+    left: ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "0" : "-110%")};
+    width: 85%;
     background: ${({ theme }) => theme.navBackground};
     backdrop-filter: blur(10px);
-    padding: 20px;
+    padding: 20px 20px 30px 20px;
     transition: left 0.3s ease-in-out;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
@@ -160,7 +181,7 @@ const NavItem = styled(motion.div)`
   }
 `;
 
-const DarkModeToggle = styled(motion.div)`
+const DesktopDarkModeToggle = styled(motion.div)`
   cursor: pointer;
   margin-right: 10px;
   display: flex;
@@ -177,6 +198,34 @@ const DarkModeToggle = styled(motion.div)`
     background: ${({ theme }) => theme.toggleHoverBackground};
     transform: scale(1.1);
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileDarkModeToggle = styled(motion.div)`
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+  padding: 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.toggleBackground};
+  backdrop-filter: blur(5px);
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.toggleHoverBackground};
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `;
 
 const HamburgerMenu = styled.div`
@@ -187,5 +236,6 @@ const HamburgerMenu = styled.div`
 
   @media (max-width: 768px) {
     display: block;
+    margin-right: 25px;
   }
 `;

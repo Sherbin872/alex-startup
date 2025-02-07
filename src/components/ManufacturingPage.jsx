@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaTools, FaIndustry, FaShoppingCart } from "react-icons/fa";
 import { ThemeContext } from "../context/ThemeContext";
+import { Footer } from "./Footer";
 
 const ManufacturingPage = () => {
   const { theme } = useContext(ThemeContext); // Access the current theme
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the page loads
+  }, []);
   return (
     <Container theme={theme}>
       {/* Header Section */}
@@ -51,6 +54,7 @@ const ManufacturingPage = () => {
           updated for our launch!
         </p>
       </ComingSoon>
+      <Footer />
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {
@@ -17,6 +17,9 @@ import { useNavigate } from "react-router-dom";
 import courses from "../assets/coursesData";
 
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the page loads
+  }, []);
   const navigate = useNavigate();
   const { darkMode, setDarkMode, theme } = useContext(ThemeContext);
   const filteredCourses = courses.filter((course) =>
@@ -198,15 +201,29 @@ const Container = styled.div`
   font-family: "Poppins", sans-serif;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: 768px) {
+    padding: 50px 20px 45px 20px;
+  }
 `;
 
 const HeroSection = styled.div`
   background: ${({ theme }) => theme.cardBackground};
   backdrop-filter: blur(10px);
-  padding: 80px 20px;
+  padding: 60px 20px;
   border-radius: 15px;
   margin-bottom: 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+    h1 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const SearchBar = styled.div`
@@ -216,7 +233,8 @@ const SearchBar = styled.div`
 
   input {
     padding: 12px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     border: none;
     border-radius: 5px 0 0 5px;
     background: ${({ theme }) => theme.cardBackground};
@@ -231,13 +249,33 @@ const SearchBar = styled.div`
     border-radius: 0 5px 5px 0;
     color: ${({ theme }) => theme.buttonText};
   }
+
+  @media (max-width: 768px) {
+    gap: 10px;
+
+    input {
+      width: 80%;
+      max-width: none;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 15%;
+      border-radius: 5px;
+    }
+  }
 `;
 
 const Categories = styled.div`
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   margin-bottom: 50px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
 `;
 
 const CategoryCard = styled(motion.div)`
@@ -262,23 +300,37 @@ const CategoryCard = styled(motion.div)`
     font-size: 14px;
     color: ${({ theme }) => theme.text};
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 250px;
+  }
 `;
 
 const Section = styled.div`
-  margin: 50px 0;
+  margin: 50px 50px;
+
+  @media (max-width: 768px) {
+    margin: 30px 0;
+  }
 `;
 
 const CourseGrid = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 `;
 
 const CourseCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBackground};
   padding: 20px;
   border-radius: 10px;
-  width: 250px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
@@ -290,6 +342,10 @@ const CourseCard = styled(motion.div)`
   p {
     font-size: 14px;
     color: ${({ theme }) => theme.text};
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;
 
@@ -309,19 +365,26 @@ const WhyChooseUs = styled.div`
   padding: 50px 20px;
   border-radius: 15px;
   margin: 50px 0;
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
 `;
 
 const FeaturesGrid = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FeatureCard = styled.div`
   background: ${({ theme }) => theme.cardBackground};
   padding: 20px;
   border-radius: 10px;
-  width: 250px;
   text-align: center;
 
   h3 {
@@ -337,16 +400,26 @@ const FeatureCard = styled.div`
 const StatsSection = styled.div`
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
   margin: 50px 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
 `;
 
 const StatCard = styled.div`
   background: ${({ theme }) => theme.cardBackground};
   color: ${({ theme }) => theme.text};
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   width: 150px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 120px;
+  }
 `;
 
 const CTA = styled.div`
@@ -364,5 +437,19 @@ const CTA = styled.div`
     cursor: pointer;
     border-radius: 5px;
     color: #ff7043;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    button {
+      font-size: 16px;
+    }
   }
 `;
