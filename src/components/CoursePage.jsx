@@ -1,71 +1,69 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
-
-const courses = [
-  {
-    id: 1,
-    title: "React Mastery",
-    instructor: "John Doe",
-    price: "$49",
-    image: "",
-  },
-  {
-    id: 2,
-    title: "JavaScript Essentials",
-    instructor: "Jane Smith",
-    price: "$39",
-    image: "",
-  },
-  {
-    id: 3,
-    title: "Full Stack Web Dev",
-    instructor: "Alex Johnson",
-    price: "$79",
-    image: "",
-  },
-  {
-    id: 4,
-    title: "Game Development",
-    instructor: "Mark Brown",
-    price: "$99",
-    image: "",
-  },
-];
+import { useNavigate, useLocation } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
+import courses from "../assets/coursesData";
 
 const Courses = () => {
-  const [darkMode, setDarkMode] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext); // Access the current theme
+  const params = new URLSearchParams(location.search);
+  const searchQuery = params.get("search") || "";
 
-  const filteredCourses = courses.filter((course) =>
-    course.title.toLowerCase().includes(searchQuery.toLowerCase())
+  // Filter courses based on the search query
+  const filteredCourses = courses.filter(
+    (course) =>
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Handle search input changes and update the URL
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    const newParams = new URLSearchParams();
+    if (query) newParams.set("search", query);
+    navigate(`?${newParams.toString()}`, { replace: true });
+  };
+
   return (
-    <PageContainer darkMode={darkMode}>
+    <PageContainer theme={theme}>
       {/* Search Bar */}
-      <SearchBar>
+      <SearchBar theme={theme}>
         <FaSearch />
         <input
           type="text"
           placeholder="Search for courses..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleSearch}
         />
       </SearchBar>
 
       {/* Course Cards */}
       <CourseGrid>
-        {filteredCourses.map((course) => (
-          <CourseCard key={course.id} whileHover={{ scale: 1.05 }}>
-            <img src={course.image} alt={course.title} />
-            <h3>{course.title}</h3>
-            <p>Instructor: {course.instructor}</p>
-            <Price>{course.price}</Price>
-            <EnrollButton whileTap={{ scale: 0.9 }}>Enroll Now</EnrollButton>
-          </CourseCard>
-        ))}
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course) => (
+            <CourseCard
+              key={course.id}
+              whileHover={{ scale: 1.05 }}
+              onClick={() =>
+                navigate(`/course/${course.id}`, { state: { course } })
+              }
+              theme={theme}
+            >
+              <img src={course.image} alt={course.title} />
+              <h3>{course.title}</h3>
+              <Price theme={theme}>{course.price}</Price>
+              <EnrollButton whileTap={{ scale: 0.9 }} theme={theme}>
+                View Details
+              </EnrollButton>
+            </CourseCard>
+          ))
+        ) : (
+          <NoResults theme={theme}>No courses found.</NoResults>
+        )}
       </CourseGrid>
     </PageContainer>
   );
@@ -78,33 +76,37 @@ const PageContainer = styled.div`
   padding: 100px 40px 40px 40px;
   text-align: center;
   min-height: 100vh;
-  background: ${({ darkMode }) =>
-    darkMode ? "#1a1a2e" : "rgba(255, 255, 255, 0.2)"};
-  backdrop-filter: blur(10px);
-  color: ${({ darkMode }) => (darkMode ? "#fff" : "#333")};
-  transition: background 0.3s ease-in-out;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 const SearchBar = styled.div`
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: ${({ theme }) => theme.searchBackground};
   border-radius: 12px;
   padding: 10px 15px;
   width: 50%;
   margin: 20px auto;
   backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out;
+
   input {
     flex: 1;
     border: none;
     background: transparent;
     outline: none;
     font-size: 16px;
-    color: white;
+    color: ${({ theme }) => theme.text};
     margin-left: 10px;
+    transition: color 0.3s ease-in-out;
   }
+
   svg {
-    color: white;
+    color: ${({ theme }) => theme.text};
+    transition: color 0.3s ease-in-out;
   }
 `;
 
@@ -116,56 +118,55 @@ const CourseGrid = styled.div`
 `;
 
 const CourseCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  background: ${({ theme }) => theme.cardBackground};
   padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: 0.3s;
+  cursor: pointer;
+  max-width: 320px;
+  min-width: 280px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease-in-out;
+
   img {
     width: 100%;
     border-radius: 8px;
   }
+
   h3 {
     margin: 10px 0;
-  }
-  p {
-    font-size: 14px;
-    color: #ddd;
+    color: ${({ theme }) => theme.text};
+    transition: color 0.3s ease-in-out;
   }
 `;
 
 const Price = styled.div`
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
-  color: #ffcc00;
+  color: ${({ theme }) => theme.primary};
+  transition: color 0.3s ease-in-out;
 `;
 
 const EnrollButton = styled(motion.button)`
-  background: linear-gradient(135deg, #ff512f, #dd2476);
-  color: white;
+  background: ${({ theme }) => theme.buttonBackground};
+  color: ${({ theme }) => theme.buttonText};
   padding: 8px 15px;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
-  transition: 0.3s;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+
   &:hover {
-    background: linear-gradient(135deg, #dd2476, #ff512f);
+    background: ${({ theme }) => theme.buttonHoverBackground};
   }
 `;
 
-const DarkModeToggle = styled.button`
+const NoResults = styled.p`
+  font-size: 18px;
+  color: ${({ theme }) => theme.primary};
   margin-top: 20px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  border: none;
-  color: ${({ dark }) => (dark ? "white" : "black")};
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 12px;
+  transition: color 0.3s ease-in-out;
 `;

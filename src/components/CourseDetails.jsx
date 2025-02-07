@@ -1,70 +1,141 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useParams, useLocation } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 import {
   FaClock,
   FaStar,
   FaChalkboardTeacher,
   FaBookOpen,
+  FaLanguage,
+  FaUsers,
+  FaLevelUpAlt,
+  FaListAlt,
+  FaRupeeSign,
 } from "react-icons/fa";
 
 const CourseDetails = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const { theme } = useContext(ThemeContext); // Access the current theme
+  const course = location.state?.course;
+
+  if (!course)
+    return <ErrorMessage theme={theme}>Course Not Found</ErrorMessage>;
+
   return (
-    <Container>
+    <Container theme={theme}>
       {/* Course Header */}
-      <Header>
+      <Header theme={theme}>
+        <motion.img
+          src={course.image}
+          alt={course.title}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        />
         <motion.h1
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Mastering Startup Growth 🚀
+          {course.title}
         </motion.h1>
-        <p>
-          Learn the strategies to scale and succeed in your startup journey.
-        </p>
       </Header>
 
-      {/* Course Overview */}
-      <Overview>
-        <DetailCard>
-          <FaClock size={30} />
-          <h4>Duration</h4>
-          <p>6 Weeks</p>
-        </DetailCard>
-        <DetailCard>
-          <FaStar size={30} />
-          <h4>Rating</h4>
-          <p>4.8/5</p>
-        </DetailCard>
-        <DetailCard>
-          <FaChalkboardTeacher size={30} />
-          <h4>Instructor</h4>
-          <p>John Doe</p>
-        </DetailCard>
-        <DetailCard>
-          <FaBookOpen size={30} />
-          <h4>Modules</h4>
-          <p>12 Comprehensive Lessons</p>
-        </DetailCard>
-      </Overview>
+      {/* Course Details */}
+      <DetailsGrid>
+        {[
+          {
+            icon: <FaClock size={30} />,
+            label: "Duration",
+            value: course.duration,
+          },
+          {
+            icon: <FaStar size={30} />,
+            label: "Rating",
+            value: `${course.rating} ⭐`,
+          },
+          {
+            icon: <FaLevelUpAlt size={30} />,
+            label: "Level",
+            value: course.level,
+          },
+          {
+            icon: <FaLanguage size={30} />,
+            label: "Language",
+            value: course.language,
+          },
+          {
+            icon: <FaUsers size={30} />,
+            label: "Enrollments",
+            value: `${course.enrollments} students`,
+          },
+        ].map((detail, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <DetailCard theme={theme}>
+              {detail.icon}
+              <h4>{detail.label}</h4>
+              <p>{detail.value}</p>
+            </DetailCard>
+          </motion.div>
+        ))}
+      </DetailsGrid>
 
-      {/* Course Content */}
-      <ContentSection>
-        <h2>What You Will Learn</h2>
+      {/* Course Pricing */}
+      <PriceTag theme={theme}>
+        <FaRupeeSign size={25} />
+        <span>{course.price.replace("₹", "")}</span>
+      </PriceTag>
+
+      {/* Prerequisites */}
+      <Section theme={theme}>
+        <h2>Prerequisites</h2>
         <ul>
-          <li>🚀 Startup fundamentals & strategy</li>
-          <li>💰 Fundraising and pitching to investors</li>
-          <li>📈 Growth hacking & scaling techniques</li>
-          <li>🛠 Product development best practices</li>
-          <li>🎯 Market analysis & customer targeting</li>
+          {course.prerequisites.map((req, index) => (
+            <motion.li
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              theme={theme}
+            >
+              {req}
+            </motion.li>
+          ))}
         </ul>
-      </ContentSection>
+      </Section>
+
+      {/* Syllabus */}
+      <Section theme={theme}>
+        <h2>Syllabus</h2>
+        <ul>
+          {course.syllabus.map((lesson, index) => (
+            <motion.li
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              theme={theme}
+            >
+              <FaListAlt /> {lesson}
+            </motion.li>
+          ))}
+        </ul>
+      </Section>
 
       {/* Call to Action */}
-      <CTA>
-        <h2>Enroll Now & Start Your Journey!</h2>
-        <button>Join Now</button>
+      <CTA theme={theme}>
+        <h2>Enroll in {course.title} Now!</h2>
+        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          Join Now
+        </motion.button>
       </CTA>
     </Container>
   );
@@ -75,56 +146,130 @@ export default CourseDetails;
 // Styled Components
 const Container = styled.div`
   text-align: center;
-  padding: 70px 50px;
+  padding: 120px 50px 50px 50px;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  color: white;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  min-height: 100vh;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 const Header = styled.div`
   margin-bottom: 50px;
+  img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
-const Overview = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+const DetailsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
   margin-bottom: 50px;
 `;
 
 const DetailCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  width: 180px;
+  background: ${({ theme }) => theme.cardBackground};
+  padding: 25px;
+  border-radius: 15px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  h4 {
+    margin: 15px 0 10px;
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.text};
+  }
+  p {
+    font-size: 1.1rem;
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
-const ContentSection = styled.div`
-  margin: 50px 0;
+const PriceTag = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  background: ${({ theme }) => theme.priceBackground};
+  padding: 15px 30px;
+  border-radius: 15px;
+  margin: 20px auto;
+  width: fit-content;
+  color: ${({ theme }) => theme.priceText};
+  gap: 10px;
+  box-shadow: 0px 5px 15px rgba(255, 183, 3, 0.3);
+`;
+
+const Section = styled.div`
+  margin-top: 40px;
+  h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: ${({ theme }) => theme.primary};
+  }
   ul {
     list-style: none;
     padding: 0;
   }
   li {
-    margin: 10px 0;
-    font-size: 18px;
+    background: ${({ theme }) => theme.listBackground};
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+    &:hover {
+      background: ${({ theme }) => theme.listHoverBackground};
+    }
   }
 `;
 
 const CTA = styled.div`
-  background: linear-gradient(135deg, #ff7043, #ff8a65);
-  color: white;
+  background: ${({ theme }) => theme.ctaBackground};
   padding: 50px;
-  border-radius: 15px;
+  border-radius: 20px;
   margin-top: 50px;
-  button {
-    background: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 5px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: ${({ theme }) => theme.ctaText};
   }
+  button {
+    background: ${({ theme }) => theme.buttonBackground};
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    color: ${({ theme }) => theme.buttonText};
+    font-weight: bold;
+    transition: background 0.3s ease, color 0.3s ease;
+    &:hover {
+      background: ${({ theme }) => theme.buttonHoverBackground};
+      color: ${({ theme }) => theme.buttonHoverText};
+    }
+  }
+`;
+
+const ErrorMessage = styled.h2`
+  text-align: center;
+  margin-top: 50px;
+  color: ${({ theme }) => theme.primary};
 `;

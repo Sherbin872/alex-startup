@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaTools, FaIndustry, FaShoppingCart } from "react-icons/fa";
+import { ThemeContext } from "../context/ThemeContext";
 
 const ManufacturingPage = () => {
+  const { theme } = useContext(ThemeContext); // Access the current theme
+
   return (
-    <Container>
+    <Container theme={theme}>
       {/* Header Section */}
-      <Header>
+      <Header theme={theme}>
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,17 +26,17 @@ const ManufacturingPage = () => {
 
       {/* Features Section */}
       <FeaturesGrid>
-        <FeatureCard whileHover={{ scale: 1.05 }}>
+        <FeatureCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaIndustry size={50} />
           <h3>Precision Manufacturing</h3>
           <p>State-of-the-art technology for high-quality components.</p>
         </FeatureCard>
-        <FeatureCard whileHover={{ scale: 1.05 }}>
+        <FeatureCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaTools size={50} />
           <h3>Custom Solutions</h3>
           <p>Tailored components to meet your specific needs.</p>
         </FeatureCard>
-        <FeatureCard whileHover={{ scale: 1.05 }}>
+        <FeatureCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaShoppingCart size={50} />
           <h3>Online Store (Coming Soon)</h3>
           <p>Browse and purchase components effortlessly.</p>
@@ -41,7 +44,7 @@ const ManufacturingPage = () => {
       </FeaturesGrid>
 
       {/* Coming Soon Section */}
-      <ComingSoon>
+      <ComingSoon theme={theme}>
         <h2>🚀 Coming Soon!</h2>
         <p>
           We are working hard to bring our high-quality components to you. Stay
@@ -59,12 +62,19 @@ const Container = styled.div`
   text-align: center;
   padding: 85px 50px;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  color: white;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 const Header = styled.div`
   margin-bottom: 50px;
+  h1 {
+    color: ${({ theme }) => theme.primary};
+  }
+  p {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const FeaturesGrid = styled.div`
@@ -72,22 +82,37 @@ const FeaturesGrid = styled.div`
   justify-content: center;
   gap: 30px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const FeatureCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.1);
+  background: ${({ theme }) => theme.cardBackground};
   padding: 30px;
   border-radius: 15px;
   width: 280px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  h3 {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  p {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const ComingSoon = styled.div`
-  background: linear-gradient(135deg, #ff7043, #ff8a65);
-  color: white;
+  background: ${({ theme }) => theme.contactBackground};
+  color: ${({ theme }) => theme.contactText};
   padding: 50px;
   border-radius: 15px;
   margin-top: 50px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;

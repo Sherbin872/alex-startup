@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { ThemeContext } from "../context/ThemeContext";
 import {
   FaComments,
   FaClipboardCheck,
@@ -10,10 +11,20 @@ import {
 } from "react-icons/fa";
 
 const ConsultancyPage = () => {
+  const { theme } = useContext(ThemeContext); // Access the current theme
+
+  const handleMailClick = () => {
+    window.location.href =
+      "mailto:sherbin872@gmail.com?subject=Hello&body=Write your message here:";
+  };
+  const handleCallClick = () => {
+    window.location.href = "tel:+9360680379"; // Replace with your phone number
+  };
+
   return (
-    <Container>
+    <Container theme={theme}>
       {/* Header Section */}
-      <Header>
+      <Header theme={theme}>
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,17 +37,17 @@ const ConsultancyPage = () => {
 
       {/* Services Section */}
       <ServicesGrid>
-        <ServiceCard whileHover={{ scale: 1.05 }}>
+        <ServiceCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaLightbulb size={50} />
           <h3>Idea Validation</h3>
           <p>Ensure your project idea is feasible and market-ready.</p>
         </ServiceCard>
-        <ServiceCard whileHover={{ scale: 1.05 }}>
+        <ServiceCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaClipboardCheck size={50} />
           <h3>Project Planning</h3>
           <p>Develop a strategic roadmap for successful execution.</p>
         </ServiceCard>
-        <ServiceCard whileHover={{ scale: 1.05 }}>
+        <ServiceCard theme={theme} whileHover={{ scale: 1.05 }}>
           <FaComments size={50} />
           <h3>Expert Guidance</h3>
           <p>One-on-one mentorship from industry professionals.</p>
@@ -44,16 +55,16 @@ const ConsultancyPage = () => {
       </ServicesGrid>
 
       {/* Contact Section */}
-      <ContactSection>
+      <ContactSection theme={theme}>
         <h2>Let's Take Your Project to the Next Level!</h2>
         <p>Get in touch with us for personalized consultancy.</p>
         <ContactMethods>
-          <ContactCard>
+          <ContactCard theme={theme} onClick={handleCallClick}>
             <FaPhoneAlt size={30} />
             <h4>Call Us</h4>
             <p>+123 456 7890</p>
           </ContactCard>
-          <ContactCard>
+          <ContactCard theme={theme} onClick={handleMailClick}>
             <FaEnvelope size={30} />
             <h4>Email Us</h4>
             <p>consultancy@mail.com</p>
@@ -71,12 +82,21 @@ const Container = styled.div`
   text-align: center;
   padding: 85px 50px;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  color: white;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 const Header = styled.div`
   margin-bottom: 50px;
+
+  h1 {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  p {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const ServicesGrid = styled.div`
@@ -84,24 +104,39 @@ const ServicesGrid = styled.div`
   justify-content: center;
   gap: 30px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ServiceCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.1);
+  background: ${({ theme }) => theme.cardBackground};
   padding: 30px;
   border-radius: 15px;
   width: 280px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  h3 {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  p {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const ContactSection = styled.div`
-  background: linear-gradient(135deg, #ff7043, #ff8a65);
-  color: white;
+  background: ${({ theme }) => theme.contactBackground};
+  color: ${({ theme }) => theme.contactText};
   padding: 50px;
   border-radius: 15px;
   margin-top: 50px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 const ContactMethods = styled.div`
@@ -109,12 +144,27 @@ const ContactMethods = styled.div`
   justify-content: center;
   gap: 50px;
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ContactCard = styled.div`
-  background: rgba(255, 255, 255, 0.2);
+  background: ${({ theme }) => theme.contactCardBackground};
   padding: 20px;
   border-radius: 10px;
   width: 200px;
   text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  h4 {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  p {
+    color: ${({ theme }) => theme.contactText};
+  }
 `;
