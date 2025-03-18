@@ -214,7 +214,7 @@ const BenefitItem = styled.div`
   transition: background 0.3s ease-in-out;
 
   h4 {
-    color: ${({ theme }) => theme.primary};
+    color: white;
   }
 
   p {

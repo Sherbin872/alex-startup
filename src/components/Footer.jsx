@@ -2,9 +2,12 @@ import React, { useContext, useState } from "react";
 import { FaYoutube, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const Footer = () => {
   const { darkMode, setDarkMode, theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   return (
     <Foooter theme={theme}>
@@ -19,19 +22,19 @@ export const Footer = () => {
         <FooterSection theme={theme}>
           <h3>Quick Links</h3>
           <ul>
-            <li>
-              <a href="#courses">Courses</a>
-            </li>
-            <li>
-              <a href="#categories">Categories</a>
-            </li>
-            <li>
-              <a href="#testimonials">Testimonials</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
+        <li>
+          <p onClick={() => navigate("/courses")}>Courses</p>
+        </li>
+        <li>
+          <p onClick={() => navigate("/categories")}>Categories</p>
+        </li>
+        <li>
+          <p onClick={() => navigate("/testimonial")}>Testimonials</p>
+        </li>
+        <li>
+          <p onClick={() => navigate("/contact")}>Contact</p>
+        </li>
+      </ul>
         </FooterSection>
         <FooterSection>
           <h3>Follow Us</h3>
@@ -40,9 +43,9 @@ export const Footer = () => {
               <FaYoutube />
             </a>
             <a href="https://twitter.com" target="blank" aria-label="Twitter">
-              <FaTwitter />
+              <FaXTwitter />
             </a>
-            <a href="https://linkedin.com" target="blank" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/techno-foasters/" target="blank" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
             <a href="https://www.instagram.com/techno_fosters_2208?igsh=cTdoMjBwZjMybDM1" target="blank" aria-label="Instagram">
@@ -105,10 +108,11 @@ const FooterSection = styled.div`
     li {
       margin-bottom: 10px;
 
-      a {
+      p {
         color: ${({ theme }) => theme.footerText};
         text-decoration: none;
         transition: color 0.3s;
+        cursor:pointer;
 
         &:hover {
           color: #ff7043;

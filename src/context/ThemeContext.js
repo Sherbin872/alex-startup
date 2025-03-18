@@ -57,6 +57,7 @@ export const ThemeProvider = ({ children }) => {
     listHoverBackground: "rgba(255, 255, 255, 0.2)",
     ctaBackground: "linear-gradient(135deg, #ff7043, #ff5252)",
     ctaText: "#ffffff",
+    
   };
 
   const theme = darkMode ? darkTheme : lightTheme;

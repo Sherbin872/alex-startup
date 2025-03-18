@@ -9,6 +9,8 @@ import ProjectConsultancyPage from "./components/ProjectConsultancyPage";
 import TeamBuildingPage from "./components/ManufacturingPage";
 import CourseDetails from "./components/CourseDetails";
 import Internship from "./components/Internship";
+import TestimonialsPage from "./components/Testimonials.jsx";
+import ContactPage from "./components/ContactPage.jsx";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/internship" element={<Internship />} />
+          <Route path="/testimonial" element={<TestimonialsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/courses" element={<CoursePage />} />
           <Route path="/course/:id" element={<CourseDetails />} />
           <Route
