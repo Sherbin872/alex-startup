@@ -8,6 +8,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import ProjectConsultancyPage from "./components/ProjectConsultancyPage";
 import TeamBuildingPage from "./components/ManufacturingPage";
 import CourseDetails from "./components/CourseDetails";
+import Internship from "./components/Internship";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/internship" element={<Internship />} />
           <Route path="/courses" element={<CoursePage />} />
           <Route path="/course/:id" element={<CourseDetails />} />
           <Route

@@ -8,6 +8,7 @@ import {
   FaMoon,
   FaBars,
   FaTimes,
+  FaUserGraduate ,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -62,6 +63,17 @@ const Navbar = () => {
         >
           <Link to="/courses">
             <FaBook size={20} aria-label="Courses" /> Courses
+          </Link>
+        </NavItem>
+        <NavItem
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={location.pathname === "/internship" ? "active" : ""}
+          theme={theme}
+          onClick={closeMobileMenu}
+        >
+          <Link to="/internship">
+            <FaUserGraduate size={20} aria-label="Internship" /> Internships
           </Link>
         </NavItem>
         <NavItem

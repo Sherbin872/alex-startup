@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaYoutube, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -36,16 +36,16 @@ export const Footer = () => {
         <FooterSection>
           <h3>Follow Us</h3>
           <SocialIcons theme={theme}>
-            <a href="https://facebook.com" aria-label="Facebook">
-              <FaFacebook />
+            <a href="https://youtube.com/@technofoasters?si=GCmuff620JzjOURr" target="blank" aria-label="Facebook">
+              <FaYoutube />
             </a>
-            <a href="https://twitter.com" aria-label="Twitter">
+            <a href="https://twitter.com" target="blank" aria-label="Twitter">
               <FaTwitter />
             </a>
-            <a href="https://linkedin.com" aria-label="LinkedIn">
+            <a href="https://linkedin.com" target="blank" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
-            <a href="https://instagram.com" aria-label="Instagram">
+            <a href="https://www.instagram.com/techno_fosters_2208?igsh=cTdoMjBwZjMybDM1" target="blank" aria-label="Instagram">
               <FaInstagram />
             </a>
           </SocialIcons>
