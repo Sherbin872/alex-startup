@@ -10,7 +10,7 @@ const courses = [
     duration: "8 weeks",
     rating: 4.8,
     enrollments: 340,
-    price: "₹49",
+    price: "₹5000",
     badge: "Best Seller",
     description:
       "Build stunning, responsive, and interactive web interfaces! 🎨🚀",
@@ -43,6 +43,30 @@ const courses = [
   },
   {
     id: 2,
+    title: "Machine Learning Basics Using Python",
+    category: "Machine Learning",
+    level: "Intermediate",
+    language: "English",
+    duration: "4 weeks",
+    rating: 4.5,
+    enrollments: 180,
+    price: "₹2999",
+    badge: "Trending",
+    description: "Master Machine Learning: Explore, Build, and Apply AI to Real-World Projects! 🤖🚀",
+    prerequisites: ["None"],
+    syllabus: [
+      "basics of python",
+      "introduction to machine learning",
+      "types of machine learning",
+      "how to use ML",
+      "project work with ML",
+    ],
+
+    image:
+      "https://topdev.vn/blog/wp-content/uploads/2021/04/machine-learning.jpg",
+  },
+  {
+    id: 3,
     title: "Spoken English",
     category: "Spoken English",
     level: "Intermediate",
@@ -50,7 +74,7 @@ const courses = [
     duration: "10 weeks",
     rating: 4.5,
     enrollments: 180,
-    price: "₹99",
+    price: "₹1999",
     badge: "Trending",
     description: "Speak fluently and confidently in any situation! 🗣️✨",
     prerequisites: ["None"],
@@ -71,7 +95,7 @@ const courses = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "Embedded Systems",
     category: "IOT",
     level: "Advanced",
@@ -79,7 +103,7 @@ const courses = [
     duration: "12 weeks",
     rating: 4.9,
     enrollments: 305,
-    price: "₹79",
+    price: "₹3000",
     badge: "Trending",
     description:
       "Design smart, efficient, and real-world embedded solutions! 🔧⚡",
@@ -98,7 +122,38 @@ const courses = [
       "https://datascientest.com/en/files/2024/06/Embedded-systems-datascientest-1024x585.jpg",
   },
   {
-    id: 4,
+    id: 5,
+    title: "Appium Mobile Testing ( Android & IOS )",
+    category: "Testing, mobile testing, software testing",
+    level: "Advanced",
+    language: "Tamil",
+    duration: "12 weeks",
+    rating: 4.9,
+    enrollments: 305,
+    price: "₹5000",
+    badge: "Trending",
+    description:
+      "Design smart, efficient, and real-world embedded solutions! 🔧⚡",
+    prerequisites: ["None"],
+    syllabus: [  
+      "Introduction to Appium & Setup Guide",  
+      "Java Essentials for Appium Automation",  
+      "Getting Started with Mobile App Testing",  
+      "Advanced Android App Automation",  
+      "Real-Time App Testing - Ecommerce Project",  
+      "Hybrid & Mobile Web Automation",  
+      "iOS Automation with Appium",  
+      "Building a Robust Automation Framework",  
+      "Enhancing Framework Efficiency",  
+      "Cloud Testing & Version Control",  
+    ],
+    
+
+    image:
+      "https://i0.wp.com/d1h3p5fzmizjvp.cloudfront.net/wp-content/uploads/2020/12/Appium-Tutorial-for-Testing-Android-and-IOS-Mobile-Apps-_FB.png?resize=836%2C439&ssl=1",
+  },
+  {
+    id: 6,
     title: "Spoken English (bridge course)",
     category: "Spoken English",
     level: "Beginner",
@@ -106,7 +161,7 @@ const courses = [
     duration: "5 days",
     rating: 4.7,
     enrollments: 275,
-    price: "₹39",
+    price: "₹1000",
     badge: "New",
     description:
       "Strengthen your basics and boost your fluency with ease! 🗣️✨",
