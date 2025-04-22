@@ -29,7 +29,7 @@ const ContactPage = () => {
     const whatsappMessage = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
 
     // Open WhatsApp with the pre-filled message
-    window.open(`https://wa.me/8870122866?text=${whatsappMessage}`, "_blank");
+    window.open(`https://wa.me/8122921697?text=${whatsappMessage}`, "_blank");
 
     // Reset the form
     setFormData({ name: "", email: "", message: "" });
@@ -101,17 +101,17 @@ const ContactPage = () => {
           <ContactCard theme={theme} onClick={() => window.open("tel:+8870122866", "_blank")}>
             <FaPhoneAlt size={30} />
             <h4>Call Us</h4>
-            <p>+91 8870122866</p>
+            <p>+91 8122921697</p>
           </ContactCard>
           <ContactCard theme={theme} onClick={() => window.open("mailto:info@yourcompany.com", "_blank")}>
             <FaEnvelope size={30} />
             <h4>Email Us</h4>
-            <p>info@yourcompany.com</p>
+            <p>technofoasters.info@gmail.com</p>
           </ContactCard>
           <ContactCard theme={theme}>
             <FaMapMarkerAlt size={30} />
             <h4>Visit Us</h4>
-            <p>123 Startup Street, Tech City, World</p>
+            <p>31,Thadiveeran Kovil east street, Tirunelveli town</p>
           </ContactCard>
         </ContactInfo>
       </ContactLayout>

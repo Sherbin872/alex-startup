@@ -26,7 +26,7 @@ export const Footer = () => {
           <p onClick={() => navigate("/courses")}>Courses</p>
         </li>
         <li>
-          <p onClick={() => navigate("/categories")}>Categories</p>
+          <p onClick={() => navigate("/")}>Categories</p>
         </li>
         <li>
           <p onClick={() => navigate("/testimonial")}>Testimonials</p>
@@ -42,7 +42,7 @@ export const Footer = () => {
             <a href="https://youtube.com/@technofoasters?si=GCmuff620JzjOURr" target="blank" aria-label="Facebook">
               <FaYoutube />
             </a>
-            <a href="https://twitter.com" target="blank" aria-label="Twitter">
+            <a href="https://x.com/Techno_Foasters?t=oNtyl6Unroc_U0D9gdcP4Q&s=09" target="blank" aria-label="Twitter">
               <FaXTwitter />
             </a>
             <a href="https://www.linkedin.com/company/techno-foasters/" target="blank" aria-label="LinkedIn">

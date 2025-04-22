@@ -41,58 +41,8 @@ const courses = [
     image:
       "https://media.licdn.com/dms/image/v2/D5612AQFfhTEictqBHA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721174916441?e=2147483647&v=beta&t=IqnGNJxS4J-yaL4rgLBlx-cbNAbFwpEMCRvkkLXsR48",
   },
-  {
-    id: 2,
-    title: "Machine Learning Basics Using Python",
-    category: "Machine Learning",
-    level: "Intermediate",
-    language: "English",
-    duration: "4 weeks",
-    rating: 4.5,
-    enrollments: 180,
-    price: "₹2999",
-    badge: "Trending",
-    description: "Master Machine Learning: Explore, Build, and Apply AI to Real-World Projects! 🤖🚀",
-    prerequisites: ["None"],
-    syllabus: [
-      "basics of python",
-      "introduction to machine learning",
-      "types of machine learning",
-      "how to use ML",
-      "project work with ML",
-    ],
-
-    image:
-      "https://topdev.vn/blog/wp-content/uploads/2021/04/machine-learning.jpg",
-  },
-  {
-    id: 3,
-    title: "Spoken English",
-    category: "Spoken English",
-    level: "Intermediate",
-    language: "English",
-    duration: "10 weeks",
-    rating: 4.5,
-    enrollments: 180,
-    price: "₹1999",
-    badge: "Trending",
-    description: "Speak fluently and confidently in any situation! 🗣️✨",
-    prerequisites: ["None"],
-    syllabus: [
-      "Introduction to Spoken English & Importance of Communication",
-      "Basic Sentence Formation & Grammar Essentials",
-      "Pronunciation & Phonetics - Common Mistakes and How to Fix Them",
-      "Pronunciation Practice: Stress, Intonation & Rhythm",
-      "Listening to English Songs, Movies, and Podcasts for Learning",
-      "Storytelling & Narration - Enhancing Expressive Skills",
-      "Mock Conversations & Real-World Practice",
-      "Final Presentation & Feedback Session",
-      "Tips & Resources for Continuous Improvement in Spoken English",
-    ],
-
-    image:
-      "https://eduurban.com/wp-content/uploads/2022/09/Rev_Web_Banner_Edu_Urban_a_Spoken_English_Main_Banner.jpg",
-  },
+  
+ 
 
   {
     id: 4,
