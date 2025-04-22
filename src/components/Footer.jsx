@@ -26,7 +26,7 @@ export const Footer = () => {
           <p onClick={() => navigate("/courses")}>Courses</p>
         </li>
         <li>
-          <p onClick={() => navigate("/")}>Categories</p>
+          <p onClick={() => navigate("/project-consultancy")}>Consultancy</p>
         </li>
         <li>
           <p onClick={() => navigate("/testimonial")}>Testimonials</p>

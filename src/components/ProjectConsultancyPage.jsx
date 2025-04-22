@@ -67,12 +67,12 @@ const ConsultancyPage = () => {
           <ContactCard theme={theme} onClick={handleCallClick}>
             <FaPhoneAlt size={30} />
             <h4>Call Us</h4>
-            <p>+123 456 7890</p>
+            <p>+91 8122921697</p>
           </ContactCard>
           <ContactCard theme={theme} onClick={handleMailClick}>
             <FaEnvelope size={30} />
             <h4>Email Us</h4>
-            <p>consultancy@mail.com</p>
+            <p>technofoasters.info@gmail.com</p>
           </ContactCard>
         </ContactMethods>
       </ContactSection>
