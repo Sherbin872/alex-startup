@@ -98,12 +98,12 @@ const ContactPage = () => {
         {/* Contact Information */}
         <ContactInfo theme={theme}>
           <h2>Contact Information</h2>
-          <ContactCard theme={theme} onClick={() => window.open("tel:+8870122866", "_blank")}>
+          <ContactCard theme={theme} onClick={() => window.open("tel:+91 8122921697", "_blank")}>
             <FaPhoneAlt size={30} />
             <h4>Call Us</h4>
             <p>+91 8122921697</p>
           </ContactCard>
-          <ContactCard theme={theme} onClick={() => window.open("mailto:info@yourcompany.com", "_blank")}>
+          <ContactCard theme={theme} onClick={() => window.open("mailto:technofoasters.info@gmail.com", "_blank")}>
             <FaEnvelope size={30} />
             <h4>Email Us</h4>
             <p>technofoasters.info@gmail.com</p>

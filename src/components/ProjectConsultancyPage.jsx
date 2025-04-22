@@ -23,7 +23,7 @@ const ConsultancyPage = () => {
       "mailto:technofoasters.info@gmail.com?subject=Hello&body=Kindly mention the type of consultancy services that you expect from us :";
   };
   const handleCallClick = () => {
-    window.location.href = "tel:+8122921697"; // Replace with your phone number
+    window.location.href = "tel:+91 8122921697"; // Replace with your phone number
   };
 
   return (
@@ -161,7 +161,7 @@ const ContactCard = styled.div`
   background: ${({ theme }) => theme.contactCardBackground};
   padding: 20px;
   border-radius: 10px;
-  width: 200px;
+  width: 220px;
   text-align: center;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
