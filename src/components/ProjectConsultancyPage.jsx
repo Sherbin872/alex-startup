@@ -20,10 +20,10 @@ const ConsultancyPage = () => {
 
   const handleMailClick = () => {
     window.location.href =
-      "mailto:sherbin872@gmail.com?subject=Hello&body=Write your message here:";
+      "mailto:technofoasters.info@gmail.com?subject=Hello&body=Kindly mention the type of consultancy services that you expect from us :";
   };
   const handleCallClick = () => {
-    window.location.href = "tel:+9360680379"; // Replace with your phone number
+    window.location.href = "tel:+8122921697"; // Replace with your phone number
   };
 
   return (
