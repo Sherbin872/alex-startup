@@ -165,7 +165,7 @@ const InternshipPage = () => {
             Transform data into insights.
           </p>
           <Eligibility theme={theme}>
-            <strong>Skills:</strong> PowerBI
+            <strong>Skills:</strong> PowerBI or React.js
           </Eligibility>
           <CareerPath>
             <strong>Career Path:</strong> Data Analyst, BI Developer
