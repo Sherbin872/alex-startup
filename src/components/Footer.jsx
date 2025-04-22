@@ -56,7 +56,7 @@ export const Footer = () => {
       </FooterContent>
       <FooterBottom>
         <p>
-          We hope you have a happy learning experience with TechnoFoasters! 😊
+          We hope you had a great experience with TechnoFoasters! 😊
         </p>
       </FooterBottom>
     </Foooter>
