@@ -27,7 +27,7 @@ const InternshipPage = () => {
 
   const handleApplyClick = () => {
     window.location.href =
-      "mailto:technofoasters.info@gmail.com?subject=Internship Application&body=Please attach your resume and mention your preferred internship role(s).";
+      "mailto:technofoasters.info@gmail.com?subject=Internship Application&body=Please attach your resume highlighting your skills alone,mention your preferred internship role(s) as well as attach your Whatsapp Number too.";
   };
 
   return (
@@ -205,7 +205,7 @@ const InternshipPage = () => {
           <BenefitItem theme={theme}>
             <FaHandsHelping size={30} />
             <h4>Hands-On Projects</h4>
-            <p>Work on real-world projects that add value to your portfolio and our company.</p>
+            <p>Work on real-world projects as well as industrial projects that add value to your portfolio and your Knowledge.</p>
           </BenefitItem>
           <BenefitItem theme={theme}>
             <FaUserTie size={30} />
