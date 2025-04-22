@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../context/ThemeContext";
 import { Footer } from "./Footer";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const ContactPage = () => {
   const { theme } = useContext(ThemeContext); // Access the current theme
@@ -46,7 +51,10 @@ const ContactPage = () => {
         >
           Let's Connect! 🌟
         </motion.h1>
-        <p>We're here to help. Reach out for inquiries, collaborations, or feedback.</p>
+        <p>
+          We're here to help. Reach out for inquiries, collaborations, or
+          feedback.
+        </p>
       </Header>
 
       {/* Contact Layout */}
@@ -98,12 +106,20 @@ const ContactPage = () => {
         {/* Contact Information */}
         <ContactInfo theme={theme}>
           <h2>Contact Information</h2>
-          <ContactCard theme={theme} onClick={() => window.open("tel:+91 8122921697", "_blank")}>
+          <ContactCard
+            theme={theme}
+            onClick={() => window.open("tel:+91 8122921697", "_blank")}
+          >
             <FaPhoneAlt size={30} />
             <h4>Call Us</h4>
             <p>+91 8122921697</p>
           </ContactCard>
-          <ContactCard theme={theme} onClick={() => window.open("mailto:technofoasters.info@gmail.com", "_blank")}>
+          <ContactCard
+            theme={theme}
+            onClick={() =>
+              window.open("mailto:technofoasters.info@gmail.com", "_blank")
+            }
+          >
             <FaEnvelope size={30} />
             <h4>Email Us</h4>
             <p>technofoasters.info@gmail.com</p>
@@ -118,16 +134,16 @@ const ContactPage = () => {
 
       {/* Map Integration */}
       <MapContainer>
-      <iframe
-        title="Company Location"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943.8837957064825!2d77.7232846709458!3d8.702584174912563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b041214b8cfaca1%3A0xd1d2c0cd7d61ccd7!2sTirunelveli%20New%20Bus%20Stand!5e0!3m2!1sen!2sin!4v1742292683986!5m2!1sen!2sin"
-        width="100%"
-        height="400"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
+        <iframe
+          title="Company Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943.648953109597!2d77.67793857418319!3d8.72484499367753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b041161ba3aff1f%3A0xbd893cae320a1245!2sThadi%20Veeran%20Kovil%20St%2C%20Tirunelveli%20Town%2C%20Tirunelveli%2C%20Tamil%20Nadu%20627006!5e0!3m2!1sen!2sin!4v1745340468354!5m2!1sen!2sin"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
         
       </MapContainer>
 
@@ -287,7 +303,8 @@ const ContactCard = styled.div`
     background: ${({ theme }) => theme.primaryHover};
     color: white;
 
-    h4, p {
+    h4,
+    p {
       color: white;
     }
   }
